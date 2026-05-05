@@ -20,7 +20,22 @@ IPN-DEV/
 
 ## 🚀 Guía de Inicio
 
-Para comenzar a trabajar en el proyecto localmente, sigue estos pasos:
+Para comenzar a trabajar en el proyecto localmente, elige una de las siguientes opciones:
+
+### 🐳 Opción A: Desarrollo con Docker (Recomendado)
+1. Asegúrate de tener [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado y corriendo.
+2. En la raíz del proyecto, ejecuta:
+   ```bash
+   docker-compose up -d
+   ```
+   *Esto levantará el Frontend (3000), Backend (8000) y la Base de Datos automáticamente.*
+
+3. Para detener los servicios: `docker-compose stop`
+
+---
+
+### 💻 Opción B: Instalación Manual
+Sigue estos pasos si prefieres no usar contenedores:
 
 ### 💻 Frontend (Next.js)
 1. Navega a la carpeta: `cd frontend`

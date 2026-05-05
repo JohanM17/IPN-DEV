@@ -1,0 +1,15 @@
+# Ignorar carpetas pesadas de dependencias
+**/node_modules
+**/vendor
+
+# Ignorar archivos de construcción
+**/.next
+**/out
+
+# Ignorar logs y temporales
+**/*.log
+**/.git
+**/.vscode
+**/storage/framework/cache
+**/storage/framework/sessions
+**/storage/framework/views

@@ -1,0 +1,42 @@
+services:
+  # Base de datos: Usamos PostgreSQL 15
+  db:
+    image: postgres:15-alpine
+    container_name: ipn_dev_db
+    restart: always
+    environment:
+      POSTGRES_DB: ipn_dev_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  # Backend: Usa el Dockerfile que acabamos de crear en /backend
+  backend:
+    build:
+      context: ./backend
+    container_name: ipn_dev_backend
+    restart: always
+    volumes:
+      - ./backend:/var/www/html
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+
+  # Frontend: Usa Node.js 20 para Next.js
+  frontend:
+    image: node:20-alpine
+    container_name: ipn_dev_frontend
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"
+    # Al arrancar, instala dependencias si no existen y lanza el modo dev
+    command: sh -c "npm install && npm run dev"
+
+volumes:
+  db_data:
