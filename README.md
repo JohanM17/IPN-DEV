@@ -9,6 +9,7 @@ Sistema integral para la gestión de inventario, desarrollado como proyecto acad
 Este es un monorepo que contiene tanto el cliente como el servidor:
 
 IPN-DEV/
+├── .agents/      # Desarrollo con IA y contexto de proyecto
 ├── frontend/     # Aplicación Next.js (React)
 ├── backend/      # API Laravel (PHP)
 ├── .gitignore    # Reglas de exclusión para Git
