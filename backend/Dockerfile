@@ -1,26 +1,20 @@
-# Usamos PHP 8.2 con Apache como base
-FROM php:8.2-apache
+FROM php:8.3-cli
 
-# Instalamos dependencias del sistema y extensiones de PHP necesarias para Laravel y PostgreSQL
+# Instalar dependencias del sistema y extensiones de PHP necesarias para Laravel/MySQL
 RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    libpng-dev \
-    zip \
-    unzip \
     git \
-    && docker-php-ext-install pdo pdo_pgsql gd
+    unzip \
+    libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql zip
 
-# Habilitamos el módulo de reescritura de Apache (vital para las rutas de Laravel)
-RUN a2enmod rewrite
+# Instalar Composer para manejar dependencias de PHP
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Configuramos el directorio de trabajo dentro del contenedor
+# Configurar el directorio de trabajo
 WORKDIR /var/www/html
 
-# Copiamos los archivos del proyecto al contenedor
-COPY . .
-
-# Cambiamos los permisos de las carpetas de almacenamiento de Laravel
-RUN chown -R www-data:www-data storage bootstrap/cache
-
-# Exponemos el puerto 80 (Apache)
+# Exponer el puerto 80 (que el docker-compose mapea al 8000)
 EXPOSE 80
+
+# Comando de inicio: instalar dependencias y levantar el servidor de Laravel
+CMD bash -c "composer install && php artisan serve --host=0.0.0.0 --port=80"

@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #2563eb;
+  --secondary: #3b82f6;
+  --bg-left: #ffffff;
+  --bg-right: #f3f4f6;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+}
+
+body {
+  @apply antialiased overflow-hidden;
+  color: var(--text-main);
+}
+
+/* FONDO DIAGONAL LIMPIO 50/50 */
+.bg-diagonal-split {
+  background: linear-gradient(110deg,
+      var(--bg-left) 0%,
+      var(--bg-left) 50%,
+      var(--bg-right) 50%,
+      var(--bg-right) 100%);
+}
+
+/* 1. Triángulo inferior izquierdo (Fondo) */
+.shape-left-bottom {
+  position: absolute;
+  bottom: -5%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background-color: var(--primary);
+  clip-path: polygon(0 0, 0% 100%, 100% 100%);
+  z-index: 0;
+}
+
+/* 2. Figura INTERNA de la tarjeta */
+.card-internal-shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background-color: var(--secondary);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 60%);
+  opacity: 0.05;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* RAYO DE LUZ (BORDER BEAM) - Versión robusta compatible */
+.beam-effect {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent, 
+    transparent, 
+    transparent, 
+    var(--primary), 
+    transparent
+  );
+  animation: rotate-beam 4s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes rotate-beam {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Animación de entrada limpia */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade {
+  animation: fadeIn 0.6s ease-out forwards;
+}

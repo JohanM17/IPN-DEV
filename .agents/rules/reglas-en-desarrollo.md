@@ -132,7 +132,7 @@ Versiones Base (Consolidadas)
 
 - Frontend: Next.js 14.x, React 18.x, Node 20.x LTS
 - Backend: Laravel 11.x, PHP 8.2+
-- BD: PostgreSQL 15.x
+- BD: MySQL 8.0
 
 
  📊 Eficiencia

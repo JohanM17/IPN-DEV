@@ -95,5 +95,5 @@ Frontend:
 Backend:
 - PHP
 - Laravel
-- PostgreSQL
+- MySQL
 - Postman
