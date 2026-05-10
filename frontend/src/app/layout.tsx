@@ -20,6 +20,22 @@ export default function RootLayout({
   return (
     <html lang="es" className={cn("font-sans", inter.variable)}>
       <body className={inter.className}>
+        {/* Script para evitar el flash de color azul antes de cargar el tema del usuario */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var color = localStorage.getItem('app-primary-color');
+                  if (color) {
+                    document.documentElement.style.setProperty('--primary', color);
+                    document.documentElement.style.setProperty('--secondary', color + 'cc');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
         <ThemeProvider>
           {children}
         </ThemeProvider>
