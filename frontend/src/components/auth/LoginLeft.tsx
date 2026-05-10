@@ -1,6 +1,6 @@
 "use client";
 
-import { Sun } from "lucide-react";
+import ThemeSwitcher from "../ui/ThemeSwitcher";
 
 /**
  * Columna izquierda: Información y branding (Ajustada: más grande y más arriba)
@@ -26,13 +26,9 @@ export default function LoginLeft() {
       {/* Triángulo decorativo subido */}
       <div className="shape-left-bottom"></div>
 
-      {/* Theme Switcher - Más grande y distribuido */}
-      <div className="absolute bottom-16 left-24 flex items-center gap-5 py-4 px-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm transition-all hover:shadow-md cursor-pointer group">
-        <Sun size={24} className="text-slate-400 group-hover:text-amber-500 transition-colors" />
-        <span className="text-xs font-black uppercase tracking-[0.15em] text-slate-500">Cambiar tema</span>
-        <div className="w-14 h-7 bg-slate-200 rounded-full relative p-1 transition-colors group-hover:bg-blue-100">
-          <div className="absolute right-1 top-1 w-5 h-5 bg-[var(--primary)] rounded-full shadow-sm"></div>
-        </div>
+      {/* Theme Switcher Real y Funcional */}
+      <div className="absolute bottom-16 left-24">
+        <ThemeSwitcher />
       </div>
     </div>
   );
