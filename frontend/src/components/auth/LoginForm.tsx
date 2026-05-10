@@ -5,6 +5,7 @@ import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 import AuthInput from "../ui/AuthInput";
 import { loginUser } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
+import { guardarSesion, rutaPorRol } from "@/lib/session";
 
 /**
  * Componente que maneja la lógica del formulario de login
@@ -24,8 +25,8 @@ export default function LoginForm() {
 
     try {
       const response = await loginUser({ email, password });
-      localStorage.setItem("token", response.token);
-      router.push("/dashboard");
+      guardarSesion(response.data.token, response.data.usuario);
+      router.push(rutaPorRol(response.data.rol));
     } catch (err: any) {
       setError(err.message || "Error al conectar con el servidor.");
     } finally {
