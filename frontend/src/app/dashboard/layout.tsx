@@ -43,7 +43,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       {/* Navbar */}
       <nav className="shadow-lg sticky top-0 z-50" style={{ background: 'var(--primary)' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16">
           <div className="flex items-center justify-between h-16">
 
             {/* Logo */}
@@ -112,7 +112,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, var(--primary), var(--secondary), var(--primary))' }} />
 
       {/* Contenido */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade">
+      <main className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 py-10 animate-fade">
         {children}
       </main>
     </div>
