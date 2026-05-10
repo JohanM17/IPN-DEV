@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --primary: #2563eb;          
-  --secondary: #3b82f6;        
-  --bg-left: #ffffff;          
-  --bg-right: #f3f4f6;         
-  --text-main: #0f172a;        
-  --text-muted: #64748b;       
+  --primary: #2563eb;
+  --secondary: #3b82f6;
+  --bg-left: #ffffff;
+  --bg-right: #f3f4f6;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
 }
 
 body {
@@ -18,13 +18,11 @@ body {
 
 /* FONDO DIAGONAL LIMPIO 50/50 */
 .bg-diagonal-split {
-  background: linear-gradient(
-    110deg, 
-    var(--bg-left) 0%, 
-    var(--bg-left) 50%, 
-    var(--bg-right) 50%, 
-    var(--bg-right) 100%
-  );
+  background: linear-gradient(110deg,
+      var(--bg-left) 0%,
+      var(--bg-left) 50%,
+      var(--bg-right) 50%,
+      var(--bg-right) 100%);
 }
 
 /* 1. Triángulo inferior izquierdo (Fondo) */
@@ -51,6 +49,30 @@ body {
   opacity: 0.05;
   z-index: 0;
   pointer-events: none;
+}
+
+/* RAYO DE LUZ (BORDER BEAM) - Versión robusta compatible */
+.beam-effect {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent, 
+    transparent, 
+    transparent, 
+    var(--primary), 
+    transparent
+  );
+  animation: rotate-beam 4s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes rotate-beam {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* Animación de entrada limpia */
