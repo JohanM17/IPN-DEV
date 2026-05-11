@@ -86,22 +86,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               </div>
 
               {/* Badge rol */}
-              <span className="px-3 py-1 rounded-full text-xs font-semibold text-white hidden sm:inline"
-                style={{ background: 'rgba(255,255,255,0.2)', border: '1px solid rgba(255,255,255,0.3)' }}>
+              <span className="px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest text-white hidden sm:inline-block bg-white/10 border border-white/20">
                 {ETIQUETA_ROL[usuario.rol] ?? usuario.rol}
               </span>
-
-              {/* Nombre */}
-              <span className="text-sm text-white/80 hidden md:block">{usuario.nombre}</span>
 
               {/* Logout */}
               <button
                 onClick={handleLogout}
                 disabled={cerrando}
-                className="flex items-center gap-1.5 text-sm text-white/70 hover:text-white transition-colors disabled:opacity-50"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/10 text-sm font-bold text-white hover:bg-white/20 transition-all border border-white/20 disabled:opacity-50 group active:scale-95"
               >
-                <LogOut size={16} />
-                <span className="hidden sm:inline">{cerrando ? 'Saliendo...' : 'Salir'}</span>
+                <LogOut size={16} className="group-hover:-translate-x-1 transition-transform" />
+                <span className="hidden sm:inline uppercase tracking-widest text-[10px]">{cerrando ? 'Saliendo...' : 'Salir'}</span>
               </button>
             </div>
           </div>
