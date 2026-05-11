@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { LogOut } from 'lucide-react';
 import { obtenerSesion, limpiarSesion, logout, Usuario } from '@/lib/session';
-import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
+// import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
 
 const ETIQUETA_ROL: Record<string, string> = {
   administrador: 'Administrador',
@@ -17,7 +17,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const router = useRouter();
   const [usuario, setUsuario] = useState<Usuario | null>(null);
   const [cerrando, setCerrando] = useState(false);
-  const [mostrarTema, setMostrarTema] = useState(false);
+  // const [mostrarTema, setMostrarTema] = useState(false);
 
   useEffect(() => {
     const sesion = obtenerSesion();
@@ -42,31 +42,32 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <div className="min-h-screen overflow-y-auto" style={{ background: 'var(--bg-right)' }}>
 
       {/* Navbar */}
-      <nav className="shadow-lg sticky top-0 z-50" style={{ background: 'var(--primary)' }}>
-        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="flex items-center justify-between h-16">
+      <nav className="shadow-lg sticky top-0 z-50 overflow-visible" style={{ background: 'var(--primary)' }}>
+        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 relative">
+          <div className="flex items-center justify-between h-20">
 
-            {/* Logo */}
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center shadow-md"
-                style={{ background: 'var(--secondary)' }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
-                  <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                  <line x1="9" y1="9" x2="9.01" y2="9" />
-                  <line x1="15" y1="9" x2="15.01" y2="9" />
-                </svg>
-              </div>
-              <div>
-                <div className="text-white font-bold text-sm leading-tight">IPN DEV</div>
-                <div className="text-xs leading-tight text-white/60">Inventario</div>
+            {/* Logo flotante centrado en el borde izquierdo del navbar */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 z-20">
+              <div className="w-32 h-32 rounded-2xl bg-white p-1" style={{ boxShadow: '0 12px 32px rgba(0,0,0,0.25)' }}>
+                <img
+                  src="/logo/Logo-Daluzed-SF.png"
+                  alt="Daluzed Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
             </div>
 
-            {/* Derecha: tema, rol, nombre, logout */}
+            {/* Título con padding para no solaparse con el logo */}
+            <div className="pl-36">
+              <div className="text-white font-black text-xl leading-tight tracking-tighter italic uppercase">Daluzed</div>
+              <div className="text-xs leading-tight text-white/60 font-bold uppercase tracking-widest">SISTEMA IPN</div>
+            </div>
+
+            {/* Derecha: tema (comentado), rol, logout */}
             <div className="flex items-center gap-4">
 
-              {/* Selector de tema */}
+              {/* Selector de tema (Comentado por requerimiento de marca) */}
+              {/* 
               <div className="relative">
                 <button
                   onClick={() => setMostrarTema(v => !v)}
@@ -84,6 +85,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   </div>
                 )}
               </div>
+              */}
 
               {/* Badge rol */}
               <span className="px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest text-white hidden sm:inline-block bg-white/10 border border-white/20">
@@ -109,34 +111,34 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       {/* Contenido con figuras de fondo decorativas mejoradas (Estilo Login) */}
       <main className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 py-10 animate-fade relative z-10">
-        
+
         {/* Figuras Decorativas de Fondo Dinámicas */}
         <div className="fixed inset-0 pointer-events-none overflow-hidden z-[-1]">
           {/* Manchas de color difusas (Glow) */}
-          <div className="absolute top-[-10%] left-[-5%] w-[50%] h-[50%] rounded-full blur-[120px] opacity-20" 
+          <div className="absolute top-[-10%] left-[-5%] w-[50%] h-[50%] rounded-full blur-[120px] opacity-20"
             style={{ background: 'var(--primary)' }} />
-          <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full blur-[100px] opacity-15" 
+          <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full blur-[100px] opacity-15"
             style={{ background: 'var(--secondary)' }} />
-          <div className="absolute top-[40%] left-[20%] w-[30%] h-[30%] rounded-full blur-[150px] opacity-10" 
+          <div className="absolute top-[40%] left-[20%] w-[30%] h-[30%] rounded-full blur-[150px] opacity-10"
             style={{ background: 'var(--primary)' }} />
 
           {/* Líneas y Figuras Geométricas Definidas */}
           <div className="absolute top-[15%] right-[10%] w-[400px] h-[400px] border-[1px] border-primary/10 rounded-full" />
           <div className="absolute top-[12%] right-[12%] w-[300px] h-[300px] border-[1px] border-primary/5 rounded-full" />
-          
+
           <div className="absolute bottom-[20%] left-[5%] w-[250px] h-[250px] border-[1px] border-primary/10 rotate-45" />
           <div className="absolute bottom-[18%] left-[7%] w-[250px] h-[250px] border-[1px] border-primary/5 rotate-[60deg]" />
 
           {/* Patrón de Grilla / Puntos más marcado */}
-          <div className="absolute inset-0 opacity-[0.05]" 
-            style={{ 
+          <div className="absolute inset-0 opacity-[0.05]"
+            style={{
               backgroundImage: `linear-gradient(var(--primary) 1px, transparent 1px), linear-gradient(90deg, var(--primary) 1px, transparent 1px)`,
-              backgroundSize: '100px 100px' 
+              backgroundSize: '100px 100px'
             }} />
-          <div className="absolute inset-0 opacity-[0.02]" 
-            style={{ 
+          <div className="absolute inset-0 opacity-[0.02]"
+            style={{
               backgroundImage: `radial-gradient(circle, var(--primary) 2px, transparent 2px)`,
-              backgroundSize: '30px 30px' 
+              backgroundSize: '30px 30px'
             }} />
         </div>
 
